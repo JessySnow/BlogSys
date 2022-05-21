@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jessysnow.boot.mapper.BlogMapper">
+    <!--开启缓存-->
+    <cache/>
+
+    <!-- List<Blog> selectAll();-->
+    <!--从数据库中查询出所有的Blog对象-->
+    <select id="selectAll" resultType="Blog">
+        SELECT * FROM blog;
+    </select>
+
+    <!-- List<Blog> selectByUserId(@Param("userId")long userId);-->
+    <select id="selectBlogByUserId" resultType="Blog">
+        SELECT *
+        FROM blog
+        WHERE user_id = #{userId}
+    </select>
+
+    <!-- List<Blog> selectBlogByCategoryId(@Param("categoryId")int categoryId);-->
+    <select id="selectBlogByCategoryId" resultType="Blog">
+        SELECT *
+        FROM blog
+        WHERE
+        <if test="categoryIds != null and categoryIds.size() > 0">
+            <foreach collection="categoryIds" item="categoryId" separator="," open="(" close=")">
+                #{categoryId}
+            </foreach>
+        </if>
+    </select>
+
+    <!-- Blog selectBlogById(@Param("id")long id);-->
+    <select id="selectBlogById" resultType="Blog">
+        SELECT *
+        FROM blog
+        WHERE id = #{id};
+    </select>
+</mapper>
