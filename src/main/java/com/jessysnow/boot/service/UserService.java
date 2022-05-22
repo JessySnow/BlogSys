@@ -49,7 +49,7 @@ public interface UserService {
      * @param username 用户名
      * @param password 密码
      */
-    void updateUser(long id,  String username, String password, String avatar);
+    void updateUser(long id,  String username, String password, String avatar, String desc);
 
     /**
      * 对用户头像修改的处理

@@ -93,13 +93,13 @@ public class UserController {
      */
     @PutMapping("")
     @ResponseBody
-    public String edit(String username, String password, @RequestParam("avatar") MultipartFile avatar, HttpServletRequest httpServletRequest) throws IOException {
+    public String edit(String username, String password, String desc, @RequestParam("avatar") MultipartFile avatar, HttpServletRequest httpServletRequest) throws IOException {
         long id = CookieUtil.getUserIdFromCookie(httpServletRequest);
         if(userService.isNameRepeat(id, username)){
             return "用户名已经被占用，更换一个用户名后重试";
         }else{
             String avatarPath = userService.updateAvatar(id, avatar, httpServletRequest);
-            userService.updateUser(id, username, password, avatarPath);
+            userService.updateUser(id, username, password, avatarPath, desc);
             return "用户信息修改成功";
         }
     }

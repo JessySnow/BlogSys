@@ -20,7 +20,10 @@ public class User implements Serializable {
     @NotNull(message = "密码不应为空")
     private String password;
 
-//    @Size(min = 19, max = 100, message = "上传图片名称过长，重命名图片名称后重试")
-//    @NotNull(message = "头像文件路径不应为空")
+    /**
+     * avatar : 头像路径
+     * desc : 个人简介
+     */
     private String avatar;
+    private String desc;
 }

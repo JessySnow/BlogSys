@@ -47,5 +47,5 @@ public interface UserMapper {
      * 更新一个用户数据
      * 更新条件 : 用户 id
      */
-    void updateUser(@Param("id")long id, @Param("username")String username, @Param("password") String password, @Param("avatar") String avatar);
+    void updateUser(@Param("id")long id, @Param("username")String username, @Param("password") String password, @Param("avatar") String avatar, @Param("desc") String desc);
 }

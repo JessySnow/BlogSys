@@ -39,12 +39,13 @@
             (#{username}, #{password});
     </insert>
 
-    <!-- void updateUser(@Param("id")long id, @Param("username")String username, @Param("password") String password, @Param("avatar") String avatar);-->
+    <!-- void updateUser(@Param("id")long id, @Param("username")String username, @Param("password") String password, @Param("avatar") String avatar, @Param("desc") String desc);-->
     <update id="updateUser">
         UPDATE user
         SET username = #{username},
             password = #{password},
-            avatar = #{avatar}
+            avatar = #{avatar},
+            `desc` = #{desc}
         WHERE id = #{id};
     </update>
 </mapper>
