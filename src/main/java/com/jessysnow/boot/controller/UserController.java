@@ -27,7 +27,6 @@ public class UserController {
     }
 
     @RequestMapping("test")
-    @ResponseBody
     public User test(){
         return userService.getUserById(1);
     }
@@ -38,7 +37,6 @@ public class UserController {
      * @return 是否登录成功的提示
      */
     @PostMapping("login")
-    @ResponseBody
     public String login(@Valid User user, BindingResult bindingResult, HttpServletResponse httpServletResponse){
         for(ObjectError error : bindingResult.getAllErrors())
             return error.getDefaultMessage();
@@ -64,7 +62,6 @@ public class UserController {
      * 获取用户的信息
      */
     @GetMapping("")
-    @ResponseBody
      public User getUserInfo(HttpServletRequest httpServletRequest){
         return userService.getUserById(CookieUtil.getUserIdFromCookie(httpServletRequest));
      }
@@ -74,7 +71,6 @@ public class UserController {
      * 增加用户信息
      */
     @PostMapping("")
-    @ResponseBody
     public String register(@Valid User user, BindingResult bindingResult){
         for(ObjectError error : bindingResult.getAllErrors())
             return error.getDefaultMessage();
@@ -92,7 +88,6 @@ public class UserController {
      * @return 是否修改成功的提示
      */
     @PutMapping("")
-    @ResponseBody
     public String edit(String username, String password, String desc, @RequestParam("avatar") MultipartFile avatar, HttpServletRequest httpServletRequest) throws IOException {
         long id = CookieUtil.getUserIdFromCookie(httpServletRequest);
         if(userService.isNameRepeat(id, username)){

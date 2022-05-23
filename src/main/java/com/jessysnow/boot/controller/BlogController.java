@@ -20,20 +20,18 @@ public class BlogController {
     }
 
     @GetMapping("")
-    @ResponseBody
     public List<Blog> BlogList(){
         return blogService.getAll();
     }
 
     @GetMapping("test")
-    @ResponseBody
     public Blog test(){
         Blog blog = new Blog();
         blog.setId(1);
         blog.setCategoryId(1);
         blog.setUserId(1);
-        blog.setContent("这是一篇测试博客的内容");
-        blog.setTitle("这是一篇测试博客的标题");
+        blog.setContent("This is the content of test blog");
+        blog.setTitle("This is the title of test blog");
         return blog;
     }
 
