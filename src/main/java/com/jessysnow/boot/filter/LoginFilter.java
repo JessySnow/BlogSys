@@ -18,6 +18,7 @@ import java.io.PrintWriter;
  *              /user/login
  *              /user/test
  *              /blog/
+ *              /photo/(静态资源)
  */
 @Component
 public class LoginFilter extends OncePerRequestFilter {
