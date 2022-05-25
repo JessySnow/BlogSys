@@ -39,4 +39,11 @@ public interface BlogMapper {
      * @return Blog 对象
      */
     Blog selectBlogById(@Param("id")long id);
+
+    /**
+     * 从数据库筛选出 9 条 Blog 对象
+     * 筛选时间：发布时间
+     * @return Blog 对象集合
+     */
+    List<Blog> selectLastNineBlogs();
 }
