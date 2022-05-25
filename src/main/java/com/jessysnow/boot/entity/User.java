@@ -12,11 +12,11 @@ public class User implements Serializable {
     private long id;
     private boolean isAdmin;
 
-    @Size(max = 50, message = "用户名过长，重新命名后重试")
+    @Size(max = 50, message = "用户名过长，更改后重试")
     @NotNull(message = "用户名不应为空")
     private String username;
 
-    @Size(max = 50, message = "密码过长，重新命名后重试")
+    @Size(max = 50, message = "密码过长，更改后重试")
     @NotNull(message = "密码不应为空")
     private String password;
 

@@ -1,5 +1,7 @@
 package com.jessysnow.boot.controller;
 
+import com.jessysnow.boot.controller.result.Code;
+import com.jessysnow.boot.controller.result.Struct;
 import com.jessysnow.boot.entity.User;
 import com.jessysnow.boot.service.UserService;
 import com.jessysnow.boot.utils.CookieUtil;
@@ -26,8 +28,8 @@ public class UserController {
     }
 
     @RequestMapping("test")
-    public User test(){
-        return userService.getUserById(1);
+    public Struct<User> test(){
+        return new Struct<>(Code.SUCCESS, userService.getUserById(1));
     }
 
     /**
@@ -36,14 +38,14 @@ public class UserController {
      * @return 是否登录成功的提示
      */
     @PostMapping("login")
-    public String login(@RequestBody  @Valid User user, HttpServletResponse httpServletResponse){
+    public Struct<String> login(@RequestBody  @Valid User user, HttpServletResponse httpServletResponse){
         user = userService.getUserByAuth(user.getUsername(), user.getPassword());
 
         if(user != null){
             CookieUtil.addUserIdToCookie(user.getId(), httpServletResponse);
-            return "认证成功";
+            return new Struct<String>(Code.SUCCESS, "认证成功");
         }else
-            return "用户认证失败，检查用户名或密码";
+            return new Struct<String>(Code.FAIL, "认证失败");
     }
 
     /**
@@ -59,8 +61,9 @@ public class UserController {
      * 获取用户的信息
      */
     @GetMapping("")
-     public User getUserInfo(HttpServletRequest httpServletRequest){
-        return userService.getUserById(CookieUtil.getUserIdFromCookie(httpServletRequest));
+     public Struct<User> getUserInfo(HttpServletRequest httpServletRequest){
+        User user = userService.getUserById(CookieUtil.getUserIdFromCookie(httpServletRequest));
+        return new Struct<>(Code.SUCCESS, user);
      }
 
     /**
@@ -68,12 +71,12 @@ public class UserController {
      * 增加用户信息
      */
     @PostMapping("")
-    public String register(@RequestBody @Valid User user){
+    public Struct<String> register(@RequestBody @Valid User user){
         if(!userService.checkNameRepeat(user.getUsername())){
             userService.registerUser(user.getUsername(), user.getPassword());
-            return "注册成功";
+            return new Struct<>(Code.SUCCESS, "添加成功");
         }else{
-            return "用户名已被占用";
+            return new Struct<>(Code.FAIL, "添加失败，存在同名用户");
         }
     }
 
@@ -83,15 +86,15 @@ public class UserController {
      * @return 是否修改成功的提示
      */
     @PutMapping("")
-    public String edit(String username, String password, String desc, @RequestParam("avatar") MultipartFile avatar, HttpServletRequest httpServletRequest) throws IOException {
+    public Struct<String> edit(String username, String password, String desc, @RequestParam("avatar") MultipartFile avatar, HttpServletRequest httpServletRequest) throws IOException {
         long id = CookieUtil.getUserIdFromCookie(httpServletRequest);
 
         if(userService.isNameRepeat(id, username)){
-            return "用户名已经被占用，更换一个用户名后重试";
+            return new Struct<>(Code.FAIL, "修改失败，存在同名用户");
         }else{
             String avatarPath = userService.updateAvatar(id, avatar, httpServletRequest);
             userService.updateUser(id, username, password, avatarPath, desc);
-            return "用户信息修改成功";
+            return new Struct<>(Code.SUCCESS, "修改成功");
         }
     }
 }
