@@ -13,6 +13,7 @@ import java.util.Date;
  * categoryId - 博客类别标签
  * userId - 写博客的用户 id
  * count - 博客的阅读次数
+ * banner - 首页博客图片
  */
 @Data
 public class Blog implements Serializable {
@@ -23,4 +24,5 @@ public class Blog implements Serializable {
     private int categoryId;
     private long userId;
     private long count;
+    private String banner;
 }
