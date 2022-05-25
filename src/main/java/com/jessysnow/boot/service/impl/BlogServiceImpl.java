@@ -22,4 +22,9 @@ public class BlogServiceImpl implements BlogService {
     public List<Blog> getAll() {
         return blogMapper.selectAll();
     }
+
+    @Override
+    public List<Blog> getLastNineBlogs() {
+        return blogMapper.selectLastNineBlogs();
+    }
 }

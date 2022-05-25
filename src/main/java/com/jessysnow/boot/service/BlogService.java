@@ -10,4 +10,10 @@ public interface BlogService {
      * @return Blog 集合对象
      */
     List<Blog> getAll();
+
+    /**
+     * 获取最新的 9 条博客
+     * @return Blog 集合对象
+     */
+    List<Blog> getLastNineBlogs();
 }
