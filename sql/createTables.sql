@@ -33,6 +33,7 @@ CREATE TABLE blog(
                      category_id INT,
                      user_id BIGINT,
                      `count` BIGINT DEFAULT 0,
+                     banner VARCHAR(100) DEFAULT '/photos/violet_evergarden.jpg',
                      FOREIGN KEY(category_id) REFERENCES category(id),
                      FOREIGN KEY(user_id) REFERENCES `user`(id)
 );

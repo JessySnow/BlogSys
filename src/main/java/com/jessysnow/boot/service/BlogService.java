@@ -16,4 +16,11 @@ public interface BlogService {
      * @return Blog 集合对象
      */
     List<Blog> getLastNineBlogs();
+
+    /**
+     * 根据 id 获取 Blog
+     * @param id 博客 id
+     * @return Blog 对象
+     */
+    Blog getBlogById(int id);
 }

@@ -1,5 +1,7 @@
 package com.jessysnow.boot.controller;
 
+import com.jessysnow.boot.controller.result.Code;
+import com.jessysnow.boot.controller.result.Struct;
 import com.jessysnow.boot.entity.Blog;
 import com.jessysnow.boot.service.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/blog/")
 public class BlogController {
-
+//
     private final BlogService blogService;
 
     @Autowired
@@ -20,19 +22,13 @@ public class BlogController {
     }
 
     @GetMapping("")
-    public List<Blog> BlogList(){
-        return blogService.getAll();
+    public Struct<List<Blog>> BlogList(){
+        return new Struct<>(Code.SUCCESS, blogService.getLastNineBlogs());
     }
 
     @GetMapping("test")
-    public Blog test(){
-        Blog blog = new Blog();
-        blog.setId(1);
-        blog.setCategoryId(1);
-        blog.setUserId(1);
-        blog.setContent("This is the content of test blog");
-        blog.setTitle("This is the title of test blog");
-        return blog;
+    public Struct<Blog> test(){
+        return new Struct<>(Code.SUCCESS, blogService.getBlogById(1));
     }
 
 }
