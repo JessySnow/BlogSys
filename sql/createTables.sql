@@ -67,6 +67,7 @@ CREATE TABLE `unlike`(
 );
 
 /*
- * 索引 : 1. mysql 提供的主键索引
+ * 索引 :  1. mysql 提供的主键索引
  *        2. `user` 表的 username 列创建的 unique 索引
+ *        3. `like` / `unlike` 使用 user_id, blog_id 作为联合主键索引
  */
