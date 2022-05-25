@@ -22,6 +22,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public boolean checkNameRepeat(String username) {
+        return userMapper.selectUserByUserName(username) != null;
+    }
+
+    @Override
     public boolean verifyUser(User user) {
         return userMapper.selectUserByUserInfo(user.getUsername(), user.getPassword()) != null;
     }

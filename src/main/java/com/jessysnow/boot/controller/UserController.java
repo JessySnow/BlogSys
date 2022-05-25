@@ -5,7 +5,6 @@ import com.jessysnow.boot.service.UserService;
 import com.jessysnow.boot.utils.CookieUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -37,11 +36,9 @@ public class UserController {
      * @return 是否登录成功的提示
      */
     @PostMapping("login")
-    public String login(@Valid User user, BindingResult bindingResult, HttpServletResponse httpServletResponse){
-        for(ObjectError error : bindingResult.getAllErrors())
-            return error.getDefaultMessage();
-
+    public String login(@RequestBody  @Valid User user, HttpServletResponse httpServletResponse){
         user = userService.getUserByAuth(user.getUsername(), user.getPassword());
+
         if(user != null){
             CookieUtil.addUserIdToCookie(user.getId(), httpServletResponse);
             return "认证成功";
@@ -71,10 +68,8 @@ public class UserController {
      * 增加用户信息
      */
     @PostMapping("")
-    public String register(@Valid User user, BindingResult bindingResult){
-        for(ObjectError error : bindingResult.getAllErrors())
-            return error.getDefaultMessage();
-        if(userService.verifyUser(user)){
+    public String register(@RequestBody @Valid User user){
+        if(!userService.checkNameRepeat(user.getUsername())){
             userService.registerUser(user.getUsername(), user.getPassword());
             return "注册成功";
         }else{
@@ -90,6 +85,7 @@ public class UserController {
     @PutMapping("")
     public String edit(String username, String password, String desc, @RequestParam("avatar") MultipartFile avatar, HttpServletRequest httpServletRequest) throws IOException {
         long id = CookieUtil.getUserIdFromCookie(httpServletRequest);
+
         if(userService.isNameRepeat(id, username)){
             return "用户名已经被占用，更换一个用户名后重试";
         }else{

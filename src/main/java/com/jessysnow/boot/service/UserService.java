@@ -23,6 +23,13 @@ public interface UserService {
     boolean isNameRepeat(long id, String username);
 
     /**
+     * 判断该用户名是否已经存在
+     * @return 已存在 -> true
+     *         不存在 -> false
+     */
+    boolean checkNameRepeat(String username);
+
+    /**
      * 通过用户 id 获取一个用户的
      * @param id 用户 id
      * @return 用户对象
