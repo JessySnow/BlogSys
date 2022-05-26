@@ -1,7 +1,6 @@
 package com.jessysnow.boot.utils;
 
 import com.jessysnow.boot.entity.User;
-import com.jessysnow.boot.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;

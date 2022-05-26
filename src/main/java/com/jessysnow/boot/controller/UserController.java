@@ -95,6 +95,7 @@ public class UserController {
         }else{
             String avatarPath = userService.updateAvatar(id, avatar, httpServletRequest);
             userService.updateUser(id, username, password, avatarPath, desc);
+            SessionUtil.addUserToSession(userService.getUserById(id), httpServletRequest);
             return new Struct<>(Code.SUCCESS, "修改成功");
         }
     }
