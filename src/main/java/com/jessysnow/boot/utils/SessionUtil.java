@@ -25,6 +25,7 @@ public class SessionUtil {
      *         不存在 -> false
      */
     public static boolean checkUserInSession(HttpServletRequest request){
+        if(request.getSession() == null) return false;
         return request.getSession().getAttribute("user") != null;
     }
 
