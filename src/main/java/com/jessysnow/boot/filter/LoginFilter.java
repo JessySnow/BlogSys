@@ -1,6 +1,7 @@
 package com.jessysnow.boot.filter;
 
 import com.jessysnow.boot.utils.CookieUtil;
+import com.jessysnow.boot.utils.SessionUtil;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -36,7 +37,7 @@ public class LoginFilter extends OncePerRequestFilter {
         }
 
         // 进行请求校验，如果 cookie 存在 userid 则将其放行
-        if(CookieUtil.checkUserIdInCookie(httpServletRequest)) {
+        if(SessionUtil.checkUserInSession(httpServletRequest)) {
             filterChain.doFilter(httpServletRequest, httpServletResponse);
             return ;
         }

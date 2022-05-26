@@ -5,6 +5,7 @@ import com.jessysnow.boot.controller.result.Struct;
 import com.jessysnow.boot.entity.User;
 import com.jessysnow.boot.service.UserService;
 import com.jessysnow.boot.utils.CookieUtil;
+import com.jessysnow.boot.utils.SessionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -38,11 +39,11 @@ public class UserController {
      * @return 是否登录成功的提示
      */
     @PostMapping("login")
-    public Struct<String> login(@RequestBody  @Valid User user, HttpServletResponse httpServletResponse){
+    public Struct<String> login(@RequestBody  @Valid User user, HttpServletResponse httpServletResponse, HttpServletRequest request){
         user = userService.getUserByAuth(user.getUsername(), user.getPassword());
 
         if(user != null){
-            CookieUtil.addUserIdToCookie(user.getId(), httpServletResponse);
+            SessionUtil.addUserToSession(user, request);
             return new Struct<String>(Code.SUCCESS, "认证成功");
         }else
             return new Struct<String>(Code.FAIL, "认证失败");
@@ -53,7 +54,7 @@ public class UserController {
      */
     @PostMapping("logout")
     public void logout(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse){
-        CookieUtil.removeUserIdFromCookie(httpServletRequest, httpServletResponse);
+        SessionUtil.removeUserFromSession(httpServletRequest);
     }
 
     /**
@@ -62,7 +63,7 @@ public class UserController {
      */
     @GetMapping("")
      public Struct<User> getUserInfo(HttpServletRequest httpServletRequest){
-        User user = userService.getUserById(CookieUtil.getUserIdFromCookie(httpServletRequest));
+        User user = SessionUtil.getUserFromSession(httpServletRequest);
         return new Struct<>(Code.SUCCESS, user);
      }
 
@@ -87,7 +88,7 @@ public class UserController {
      */
     @PutMapping("")
     public Struct<String> edit(String username, String password, String desc, @RequestParam("avatar") MultipartFile avatar, HttpServletRequest httpServletRequest) throws IOException {
-        long id = CookieUtil.getUserIdFromCookie(httpServletRequest);
+        long id = SessionUtil.getUserFromSession(httpServletRequest).getId();
 
         if(userService.isNameRepeat(id, username)){
             return new Struct<>(Code.FAIL, "修改失败，存在同名用户");
