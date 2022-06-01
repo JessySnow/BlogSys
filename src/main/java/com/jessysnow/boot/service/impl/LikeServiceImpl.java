@@ -2,6 +2,7 @@ package com.jessysnow.boot.service.impl;
 
 import com.jessysnow.boot.entity.User;
 import com.jessysnow.boot.mapper.LikeMapper;
+import com.jessysnow.boot.mapper.UnLikeMapper;
 import com.jessysnow.boot.service.LikeService;
 import com.jessysnow.boot.utils.SessionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +14,12 @@ import javax.servlet.http.HttpServletRequest;
 public class LikeServiceImpl implements LikeService {
 
     private final LikeMapper likeMapper;
+    private final UnLikeMapper unLikeMapper;
 
     @Autowired
-    public LikeServiceImpl(LikeMapper likeMapper) {
+    public LikeServiceImpl(LikeMapper likeMapper, UnLikeMapper unLikeMapper) {
         this.likeMapper = likeMapper;
+        this.unLikeMapper = unLikeMapper;
     }
 
     @Override
@@ -32,7 +35,8 @@ public class LikeServiceImpl implements LikeService {
     @Override
     public boolean likeABlog(HttpServletRequest request, long blogId) {
         User user = SessionUtil.getUserFromSession(request);
-        if(likeMapper.selectLikeRecord(user.getId(), blogId) == null){
+        if(likeMapper.selectLikeRecord(user.getId(), blogId) == null &&
+            unLikeMapper.selectUnLikeRecord(user.getId(), blogId) == null){
             likeMapper.insertNewLike(user.getId(), blogId);
             return true;
         }
