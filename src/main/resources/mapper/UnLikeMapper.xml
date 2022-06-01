@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jessysnow.boot.mapper.UnLikeMapper">
+
+    <!--开启二级缓存-->
+    <cache/>
+
+    <!-- void insertNewUnLike(@Param("userId") long userId, @Param("blogId") long blogId);-->
+    <insert id="insertNewUnLike">
+        INSERT INTO `unlike`(user_id, blog_id)
+        VALUES
+        (#{userId}, #{blogId});
+    </insert>
+
+    <!-- UnLike selectUnLikeRecord(@Param("userId") long userId, @Param("blogId") long blogId);-->
+    <select id="selectUnLikeRecord" resultType="UnLike">
+        SELECT *
+        FROM `unlike`
+        WHERE user_id = #{userId} AND blog_id = ${blogId};
+    </select>
+
+    <!-- void deleteUnLikeRecord(@Param("userId") long userId, @Param("blogId") long blogId);-->
+    <delete id="deleteUnLikeRecord">
+        DELETE FROM `unlike`
+        WHERE user_id = #{userId} AND blog_id = #{blogId};
+    </delete>
+
+</mapper>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jessysnow.boot.mapper.LikeMapper">
+
+    <!--开启二级缓存-->
+    <cache/>
+
+    <!-- void insertNewLike(@Param("userId") long userId, @Param("blogId") long blogId);-->
+    <insert id="insertNewLike">
+        INSERT INTO `like`(user_id, blog_id)
+        VALUES
+        (#{userId}, #{blogId});
+    </insert>
+
+    <!-- Like selectLikeRecord(@Param("userId") long userId, @Param("blogId") long blogId);-->
+    <select id="selectLikeRecord" resultType="Like">
+        SELECT *
+        FROM `like`
+        WHERE user_id = #{userId} AND blog_id = #{blogId};
+    </select>
+
+    <!-- void deleteLikeRecord(@Param("userId") long userId, @Param("blogId") long blogId);-->
+    <delete id="deleteLikeRecord">
+        DELETE FROM `like`
+        WHERE user_id = #{userId} AND blog_id = #{blogId};
+    </delete>
+
+</mapper>
