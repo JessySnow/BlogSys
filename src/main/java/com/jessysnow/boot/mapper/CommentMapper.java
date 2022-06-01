@@ -17,4 +17,13 @@ public interface CommentMapper {
      * @return Comment 对象集合
      */
     List<Comment> selectCommentByBlogId(@Param("blogId") long blogId);
+
+    /**
+     * 向数据库插入一条新的评论
+     * @param content 评论正文
+     * @param blogId 博客 id
+     */
+    void insertNewComment(@Param("content")String content,@Param("blogId") long blogId,@Param("userId") long userId);
+
+
 }

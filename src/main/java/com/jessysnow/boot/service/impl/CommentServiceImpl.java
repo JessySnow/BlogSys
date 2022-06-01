@@ -21,4 +21,9 @@ public class CommentServiceImpl implements CommentService {
     public List<Comment> getCommentByBlogId(long blogId) {
         return commentMapper.selectCommentByBlogId(blogId);
     }
+
+    @Override
+    public void addNewComment(String content, long blogId, long userId) {
+        commentMapper.insertNewComment(content, blogId, userId);
+    }
 }

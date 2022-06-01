@@ -10,6 +10,13 @@
     <!-- List<Comment> selectCommentByBlogId(@Param("blogId") long blogId);-->
     <select id="selectCommentByBlogId" resultType="Comment">
         SELECT * FROM comment
-        WHERE blog_id = #{blogId}
+        WHERE blog_id = #{blogId};
     </select>
+
+    <!-- void insertNewComment(String content, long blogId);-->
+    <insert id="insertNewComment">
+        INSERT INTO comment(blog_id, content, pub_date, user_id)
+        VALUES
+        (#{blogId}, #{content}, NOW(), #{userId});
+    </insert>
 </mapper>
