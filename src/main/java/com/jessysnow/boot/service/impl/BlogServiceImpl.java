@@ -29,7 +29,7 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    public Blog getBlogById(int id) {
+    public Blog getBlogById(long id) {
         return blogMapper.selectBlogById(id);
     }
 }

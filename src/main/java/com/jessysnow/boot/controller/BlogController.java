@@ -13,7 +13,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/blog/")
 public class BlogController {
-//
     private final BlogService blogService;
 
     @Autowired
@@ -31,4 +30,8 @@ public class BlogController {
         return new Struct<>(Code.SUCCESS, blogService.getBlogById(1));
     }
 
+    @GetMapping({"{id}"})
+    public Struct<Blog> getSpecificBlog(@PathVariable(name = "id") long id){
+        return new Struct<>(Code.SUCCESS, blogService.getBlogById(id));
+    }
 }

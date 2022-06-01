@@ -4,10 +4,8 @@ import com.jessysnow.boot.controller.result.Code;
 import com.jessysnow.boot.controller.result.Struct;
 import com.jessysnow.boot.entity.User;
 import com.jessysnow.boot.service.UserService;
-import com.jessysnow.boot.utils.CookieUtil;
 import com.jessysnow.boot.utils.SessionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 

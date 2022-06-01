@@ -22,5 +22,5 @@ public interface BlogService {
      * @param id 博客 id
      * @return Blog 对象
      */
-    Blog getBlogById(int id);
+    Blog getBlogById(long id);
 }
