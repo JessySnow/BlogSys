@@ -31,4 +31,11 @@ public interface UnLikeMapper {
      * @param blogId 博客 id
      */
     void deleteUnLikeRecord(@Param("userId") long userId, @Param("blogId") long blogId);
+
+    /**
+     * 获取博客点踩数量
+     * @param blogId 博客 id
+     * @return long 博客的点踩数
+     */
+    long selectUnLikeCount(@Param("blogId") long blogId);
 }

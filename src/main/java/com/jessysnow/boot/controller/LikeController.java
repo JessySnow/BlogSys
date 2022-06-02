@@ -31,4 +31,9 @@ public class LikeController {
         return new Struct<>(likeService.cancelLikeBlog(request,
                 Long.parseLong(map.get("blogId"))));
     }
+
+    @GetMapping("{blogId}")
+    public Struct<Long> getBlogLikeCount(@PathVariable("blogId") Long blogId){
+        return new Struct<>(likeService.getBlogLikeCount(blogId));
+    }
 }

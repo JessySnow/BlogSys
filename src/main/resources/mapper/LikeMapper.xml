@@ -25,4 +25,10 @@
         WHERE user_id = #{userId} AND blog_id = #{blogId};
     </delete>
 
+    <!-- long selectLikeCount(@Param("blogId") long blogId);-->
+    <select id="selectLikeCount" resultType="long">
+        SELECT COUNT(*)
+        FROM `like`
+        WHERE blog_id = #{blogId};
+    </select>
 </mapper>

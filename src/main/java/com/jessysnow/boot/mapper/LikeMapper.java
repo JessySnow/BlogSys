@@ -30,4 +30,11 @@ public interface LikeMapper {
      * @param blogId 博客 id
      */
     void deleteLikeRecord(@Param("userId") long userId, @Param("blogId") long blogId);
+
+    /**
+     * 获取博客点赞数量
+     * @param blogId 博客 id
+     * @return long 博客的点赞数
+     */
+    long selectLikeCount(@Param("blogId") long blogId);
 }

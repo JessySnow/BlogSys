@@ -42,4 +42,9 @@ public class LikeServiceImpl implements LikeService {
         }
         return false;
     }
+
+    @Override
+    public long getBlogLikeCount(long blogId) {
+        return likeMapper.selectLikeCount(blogId);
+    }
 }

@@ -42,4 +42,9 @@ public class UnLikeServiceImpl implements UnLikeService {
         }
         return false;
     }
+
+    @Override
+    public long getBlogUnLikeCount(long blogId) {
+        return unLikeMapper.selectUnLikeCount(blogId);
+    }
 }

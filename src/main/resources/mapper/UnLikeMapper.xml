@@ -25,4 +25,10 @@
         WHERE user_id = #{userId} AND blog_id = #{blogId};
     </delete>
 
+    <!-- long selectUnLikeCount(@Param("blogId") long blogId);-->
+    <select id="selectUnLikeCount" resultType="long">
+        SELECT COUNT(*)
+        FROM unlike
+        WHERE blog_id = #{blogId};
+    </select>
 </mapper>

@@ -30,4 +30,9 @@ public class UnLikeController {
         return new Struct<>(unLikeService.cancelUnLikeBlog(request,
                 Long.parseLong(map.get("blogId"))));
     }
+
+    @GetMapping("{blogId}")
+    public Struct<Long> getBlogUnLikeCount(@PathVariable("blogId") Long blogId){
+        return new Struct<>(unLikeService.getBlogUnLikeCount(blogId));
+    }
 }
