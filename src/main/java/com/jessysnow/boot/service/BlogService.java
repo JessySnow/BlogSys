@@ -18,6 +18,12 @@ public interface BlogService {
     List<Blog> getLastNineBlogs();
 
     /**
+     * 获取最新的 9 条博客包装对象
+     * @return BlogWrapper 对象
+     */
+    List<Blog> getLastNineBlogWrappers();
+
+    /**
      * 根据 id 获取 Blog
      * @param id 博客 id
      * @return Blog 对象

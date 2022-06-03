@@ -22,7 +22,7 @@ public class BlogController {
 
     @GetMapping("")
     public Struct<List<Blog>> BlogList(){
-        return new Struct<>(Code.SUCCESS, blogService.getLastNineBlogs());
+        return new Struct<>(Code.SUCCESS, blogService.getLastNineBlogWrappers());
     }
 
     @GetMapping("test")

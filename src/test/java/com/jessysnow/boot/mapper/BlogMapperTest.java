@@ -18,4 +18,9 @@ public class BlogMapperTest {
     public void testOnSelectById(){
         System.out.println(blogMapper.selectBlogById(1));
     }
+
+    @Test
+    public void selectLastNineBlogWrappers() {
+        System.out.println(blogMapper.selectLastNineBlogWrappers());
+    }
 }

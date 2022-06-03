@@ -13,6 +13,11 @@ public class BlogServiceImpl implements BlogService {
 
     private final BlogMapper blogMapper;
 
+    @Override
+    public List<Blog> getLastNineBlogWrappers() {
+        return blogMapper.selectLastNineBlogWrappers();
+    }
+
     @Autowired
     public BlogServiceImpl(BlogMapper blogMapper) {
         this.blogMapper = blogMapper;

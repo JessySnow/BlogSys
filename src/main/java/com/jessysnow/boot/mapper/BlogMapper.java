@@ -42,8 +42,15 @@ public interface BlogMapper {
 
     /**
      * 从数据库筛选出 9 条 Blog 对象
-     * 筛选时间：发布时间
+     * 筛选条件：发布时间
      * @return Blog 对象集合
      */
     List<Blog> selectLastNineBlogs();
+
+    /**
+     * 从数据库筛选出 9 条 BlogWrapper 对象
+     * 筛选条件：发布时间
+     * @return BlogWrapper 对象
+     */
+    List<Blog> selectLastNineBlogWrappers();
 }

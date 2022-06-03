@@ -46,4 +46,13 @@
         LIMIT 0, 9;
     </select>
 
+    <!-- List<Blog> selectLastNineBlogWrappers();-->
+    <select id="selectLastNineBlogWrappers" resultType="BlogWrapper">
+        SELECT b.id, b.title, b.pub_date, b.user_id, b.count, b.banner, b.content, c.value
+        FROM blog b
+        LEFT JOIN category c
+        ON b.category_id = c.id
+        ORDER BY pub_date DESC
+        LIMIT 0, 9;
+    </select>
 </mapper>
