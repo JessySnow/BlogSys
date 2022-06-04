@@ -56,4 +56,12 @@ public interface BlogMapper {
     List<BlogWrapper> selectLastNineBlogWrappers();
 
     //TODO 插入博客的实现
+    /**
+     * 插入一条新的博客记录
+     * @param title 标题
+     * @param content 博客内容
+     * @param categoryId 分类的 id
+     * @param userId 用户 id
+     */
+    void insertANewBlog(@Param("title")String title,@Param("content")String content,@Param("categoryId")int categoryId, @Param("userId")long userId);
 }

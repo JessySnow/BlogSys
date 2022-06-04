@@ -3,6 +3,7 @@ package com.jessysnow.boot.service;
 import com.jessysnow.boot.entity.Blog;
 import com.jessysnow.boot.entity.vo.BlogWrapper;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 public interface BlogService {
@@ -30,4 +31,7 @@ public interface BlogService {
      * @return Blog 对象
      */
     Blog getBlogById(long id);
+
+
+    void pubANewBlog(String title, String content, int categoryId, HttpServletRequest request);
 }

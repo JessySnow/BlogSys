@@ -55,4 +55,12 @@
         ORDER BY pub_date DESC
         LIMIT 0, 9;
     </select>
+
+    <!-- void insertANewBlog(@Param("title")String title,@Param("content")String content,@Param("categoryId")int categoryId, @Param("userId")long userId);-->
+    <insert id="insertANewBlog">
+        INSERT INTO blog(title, content, pub_date, category_id, user_id)
+        VALUES
+        (#{title}, #{content}, NOW(), #{categoryId}, #{userId});
+    </insert>
+
 </mapper>

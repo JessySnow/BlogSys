@@ -4,9 +4,11 @@ import com.jessysnow.boot.entity.Blog;
 import com.jessysnow.boot.entity.vo.BlogWrapper;
 import com.jessysnow.boot.mapper.BlogMapper;
 import com.jessysnow.boot.service.BlogService;
+import com.jessysnow.boot.utils.SessionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Service
@@ -41,6 +43,11 @@ public class BlogServiceImpl implements BlogService {
     @Override
     public Blog getBlogById(long id) {
         return blogMapper.selectBlogById(id);
+    }
+
+    @Override
+    public void pubANewBlog(String title, String content, int categoryId, HttpServletRequest request) {
+        blogMapper.insertANewBlog(title, content, categoryId, SessionUtil.getUserFromSession(request).getId());
     }
 
     /**
@@ -107,4 +114,5 @@ public class BlogServiceImpl implements BlogService {
 //        }
 //        return filterContent(content);
 //    }
+
 }
