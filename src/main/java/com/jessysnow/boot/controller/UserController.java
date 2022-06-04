@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.io.IOException;
+import java.util.HashMap;
 
 @CrossOrigin
 @RestController
@@ -96,5 +97,11 @@ public class UserController {
             SessionUtil.addUserToSession(userService.getUserById(id), httpServletRequest);
             return new Struct<>(Code.SUCCESS, "修改成功");
         }
+    }
+
+    @PostMapping("author")
+    public Struct<User> getBlogAuthor(@RequestBody HashMap<String, Long>map){
+        long blogId = map.get("blogId");
+        return new Struct<>(userService.getBlogAuthor(blogId));
     }
 }

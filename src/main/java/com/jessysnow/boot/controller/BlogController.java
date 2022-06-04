@@ -3,6 +3,7 @@ package com.jessysnow.boot.controller;
 import com.jessysnow.boot.controller.result.Code;
 import com.jessysnow.boot.controller.result.Struct;
 import com.jessysnow.boot.entity.Blog;
+import com.jessysnow.boot.entity.vo.BlogWrapper;
 import com.jessysnow.boot.service.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +22,7 @@ public class BlogController {
     }
 
     @GetMapping("")
-    public Struct<List<Blog>> BlogList(){
+    public Struct<List<BlogWrapper>> BlogList(){
         return new Struct<>(Code.SUCCESS, blogService.getLastNineBlogWrappers());
     }
 

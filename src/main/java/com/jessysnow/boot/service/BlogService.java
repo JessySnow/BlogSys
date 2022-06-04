@@ -1,6 +1,7 @@
 package com.jessysnow.boot.service;
 
 import com.jessysnow.boot.entity.Blog;
+import com.jessysnow.boot.entity.vo.BlogWrapper;
 
 import java.util.List;
 
@@ -21,7 +22,7 @@ public interface BlogService {
      * 获取最新的 9 条博客包装对象
      * @return BlogWrapper 对象
      */
-    List<Blog> getLastNineBlogWrappers();
+    List<BlogWrapper> getLastNineBlogWrappers();
 
     /**
      * 根据 id 获取 Blog

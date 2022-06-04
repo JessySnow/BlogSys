@@ -48,4 +48,12 @@ public interface UserMapper {
      * 更新条件 : 用户 id
      */
     void updateUser(@Param("id")long id, @Param("username")String username, @Param("password") String password, @Param("avatar") String avatar, @Param("desc") String desc);
+
+    /**
+     * 从数据库获取 User 对象
+     * 筛选条件 博客 id
+     * @return User 对象
+     * @param blogId 博客 id
+     */
+    User selectUserByBlogId(@Param("blogId") long blogId);
 }

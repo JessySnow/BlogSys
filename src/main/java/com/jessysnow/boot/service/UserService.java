@@ -64,4 +64,11 @@ public interface UserService {
      * @param avatar 用户头像
      */
     String updateAvatar(long id, MultipartFile avatar, HttpServletRequest httpServletRequest) throws IOException;
+
+    /**
+     * 获取博客的作者
+     * @param blogId 博客 id
+     * @return 博客的作者
+     */
+    User getBlogAuthor(long blogId);
 }

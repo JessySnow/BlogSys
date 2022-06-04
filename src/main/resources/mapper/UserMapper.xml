@@ -50,4 +50,13 @@
             `desc` = #{desc}
         WHERE id = #{id};
     </update>
+
+    <!-- User selectUserByBlogId(@Param("blogId") long blogId);-->
+    <select id="selectUserByBlogId" resultType="User">
+        SELECT user.username, user.`desc`, user.avatar
+        FROM user
+        JOIN blog
+        ON user.id = blog.user_id
+        WHERE blog.id = #{blogId};
+    </select>
 </mapper>

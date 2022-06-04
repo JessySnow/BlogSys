@@ -31,6 +31,7 @@ public class LoginFilter extends OncePerRequestFilter {
                 || "/blog/test".equals(httpServletRequest.getRequestURI())
                 || "/blog/".equals(httpServletRequest.getRequestURI())
                 || httpServletRequest.getRequestURI().startsWith("/photo")
+                || "/user/author".equals(httpServletRequest.getRequestURI())
                 || ("/user/".equals(httpServletRequest.getRequestURI()) && httpServletRequest.getMethod().equals("POST"))){
             filterChain.doFilter(httpServletRequest, httpServletResponse);
             return ;

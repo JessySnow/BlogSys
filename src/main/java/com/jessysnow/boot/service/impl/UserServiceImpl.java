@@ -67,4 +67,9 @@ public class UserServiceImpl implements UserService {
 
         return "/photo/" + avatar.getOriginalFilename();
     }
+
+    @Override
+    public User getBlogAuthor(long blogId) {
+        return userMapper.selectUserByBlogId(blogId);
+    }
 }

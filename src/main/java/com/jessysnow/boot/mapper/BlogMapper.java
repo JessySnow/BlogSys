@@ -1,6 +1,7 @@
 package com.jessysnow.boot.mapper;
 
 import com.jessysnow.boot.entity.Blog;
+import com.jessysnow.boot.entity.vo.BlogWrapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -52,5 +53,7 @@ public interface BlogMapper {
      * 筛选条件：发布时间
      * @return BlogWrapper 对象
      */
-    List<Blog> selectLastNineBlogWrappers();
+    List<BlogWrapper> selectLastNineBlogWrappers();
+
+    //TODO 插入博客的实现
 }
