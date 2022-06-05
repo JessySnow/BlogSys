@@ -21,9 +21,15 @@ public interface BlogService {
 
     /**
      * 获取最新的 9 条博客包装对象
-     * @return BlogWrapper 对象
+     * @return BlogWrapper 对象集合
      */
     List<BlogWrapper> getLastNineBlogWrappers();
+
+    /**
+     * 获取用户的所有博客
+     * @return BlogWrapper 对象集合
+     */
+    List<BlogWrapper> getUserBlogs(long userId);
 
     /**
      * 根据 id 获取 Blog

@@ -41,6 +41,14 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
+    public List<BlogWrapper> getUserBlogs(long userId) {
+        List<BlogWrapper> blogWrapperList = blogMapper.selectBlogWrapperByUserId(userId);
+        for(BlogWrapper blogWrapper : blogWrapperList)
+            blogWrapper.setOutline(getOutLine(blogWrapper.getContent()));
+        return blogWrapperList;
+    }
+
+    @Override
     public Blog getBlogById(long id) {
         return blogMapper.selectBlogById(id);
     }

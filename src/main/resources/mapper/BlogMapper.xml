@@ -63,4 +63,16 @@
         (#{title}, #{content}, NOW(), #{categoryId}, #{userId});
     </insert>
 
+
+    <!-- List<BlogWrapper> selectBlogWrapperByUserId(@Param("userId") long userId);-->
+    <select id="selectBlogWrapperByUserId" resultType="BlogWrapper">
+        SELECT b.id, b.title, b.pub_date, b.user_id, b.count, b.banner, b.content, c.value
+        FROM blog b
+        LEFT JOIN category c
+        ON b.category_id = c.id
+        LEFT JOIN `user` u
+        ON b.user_id = u.id
+        WHERE u.id = #{userId};
+    </select>
+
 </mapper>

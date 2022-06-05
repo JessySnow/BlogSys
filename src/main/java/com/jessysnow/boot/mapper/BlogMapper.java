@@ -42,6 +42,14 @@ public interface BlogMapper {
     Blog selectBlogById(@Param("id")long id);
 
     /**
+     * 从数据库获取所有的 Blog 对象
+     * 筛选条件：用户 id
+     * @param userId 用户 id
+     * @return Blog 对象集合
+     */
+    List<BlogWrapper> selectBlogWrapperByUserId(@Param("userId") long userId);
+
+    /**
      * 从数据库筛选出 9 条 Blog 对象
      * 筛选条件：发布时间
      * @return Blog 对象集合
