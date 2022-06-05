@@ -3,6 +3,8 @@ package com.jessysnow.boot.controller;
 import com.jessysnow.boot.controller.result.Code;
 import com.jessysnow.boot.controller.result.Struct;
 import com.jessysnow.boot.entity.User;
+import com.jessysnow.boot.entity.vo.BlogWrapper;
+import com.jessysnow.boot.service.BlogService;
 import com.jessysnow.boot.service.UserService;
 import com.jessysnow.boot.utils.SessionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 
 @CrossOrigin
 @RestController
@@ -21,10 +24,12 @@ import java.util.HashMap;
 public class UserController {
 
     private final UserService userService;
+    private final BlogService blogService;
 
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(UserService userService, BlogService blogService) {
         this.userService = userService;
+        this.blogService = blogService;
     }
 
     @RequestMapping("test")
@@ -103,5 +108,11 @@ public class UserController {
     public Struct<User> getBlogAuthor(@RequestBody HashMap<String, Long>map){
         long blogId = map.get("blogId");
         return new Struct<>(userService.getBlogAuthor(blogId));
+    }
+
+    @GetMapping("blogs")
+    public Struct<List<BlogWrapper>> getMyBlogs(HttpServletRequest request){
+        long userId = SessionUtil.getUserFromSession(request).getId();
+        return new Struct<>(blogService.getUserBlogs(userId));
     }
 }

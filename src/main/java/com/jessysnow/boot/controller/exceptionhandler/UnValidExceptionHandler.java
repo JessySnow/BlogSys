@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.multipart.MultipartException;
 
 /**
- * 对于数据校验失败的处理器
+ * 全局异常捕获
  */
 @RestControllerAdvice
 public class UnValidExceptionHandler{
