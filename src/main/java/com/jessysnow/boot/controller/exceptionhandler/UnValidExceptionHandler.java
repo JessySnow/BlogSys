@@ -2,7 +2,6 @@ package com.jessysnow.boot.controller.exceptionhandler;
 
 import com.jessysnow.boot.controller.result.Code;
 import com.jessysnow.boot.controller.result.Struct;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -18,4 +17,8 @@ public class UnValidExceptionHandler{
         return new Struct<>(Code.FAIL, e.getBindingResult().getAllErrors().get(0).getDefaultMessage());
     }
 
+    @ExceptionHandler(NullPointerException.class)
+    public Struct<String> NullPointerExceptionHandler(){
+        return new Struct<>(Code.FAIL, "Oops, 好像出了点问题，请检查是否已经登录，或者提交的信息是否完整");
+    }
 }
