@@ -5,6 +5,7 @@ import com.jessysnow.boot.controller.result.Struct;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.multipart.MultipartException;
 
 /**
  * 对于数据校验失败的处理器
@@ -19,6 +20,11 @@ public class UnValidExceptionHandler{
 
     @ExceptionHandler(NullPointerException.class)
     public Struct<String> NullPointerExceptionHandler(){
+        return new Struct<>(Code.FAIL, "Oops, 好像出了点问题，请检查是否已经登录，或者提交的信息是否完整");
+    }
+
+    @ExceptionHandler(MultipartException.class)
+    public Struct<String> MultipartException(){
         return new Struct<>(Code.FAIL, "Oops, 好像出了点问题，请检查是否已经登录，或者提交的信息是否完整");
     }
 }
