@@ -94,6 +94,11 @@ public class UserController {
     public Struct<String> edit(String username, String password, String desc, @RequestParam("avatar") MultipartFile avatar, HttpServletRequest httpServletRequest) throws IOException {
         long id = SessionUtil.getUserFromSession(httpServletRequest).getId();
 
+        System.out.println(username);
+        System.out.println(password);
+        System.out.println(desc);
+        System.out.println(avatar.getOriginalFilename());
+
         if(userService.isNameRepeat(id, username)){
             return new Struct<>(Code.FAIL, "修改失败，存在同名用户");
         }else{
