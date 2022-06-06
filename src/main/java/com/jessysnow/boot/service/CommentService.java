@@ -1,6 +1,7 @@
 package com.jessysnow.boot.service;
 
 import com.jessysnow.boot.entity.Comment;
+import com.jessysnow.boot.entity.vo.CommentWrapper;
 
 import java.util.List;
 
@@ -12,6 +13,13 @@ public interface CommentService {
      * @return 博客的所有评论
      */
     List<Comment> getCommentByBlogId(long blogId);
+
+    /**
+     * 获取某一篇博客的评论
+     * @param blogId 博客 id
+     * @return 博客的所有评论包装对象
+     */
+    List<CommentWrapper> getCommentWrapperById(long blogId);
 
     /**
      * 新增一篇文章的评论

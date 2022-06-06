@@ -19,4 +19,22 @@
         VALUES
         (#{blogId}, #{content}, NOW(), #{userId});
     </insert>
+
+    <resultMap id="commentWrapperMapper" type="CommentWrapper">
+        <result property="content" column="content"/>
+        <result property="pubDate" column="pub_date"/>
+        <association property="user" javaType="User">
+            <result property="username" column="username"/>
+            <result property="avatar" column="avatar"/>
+        </association>
+    </resultMap>
+
+    <!-- List<CommentWrapper> selectCommentWrapperByBlogId(@Param("blogId") long blogId);-->
+    <select id="selectCommentWrapperByBlogId" resultMap="commentWrapperMapper">
+        SELECT c.content, c.pub_date, u.username, u.avatar
+        FROM comment c
+        JOIN user u
+        ON c.user_id = u.id
+        WHERE c.blog_id = #{blogId};
+    </select>
 </mapper>

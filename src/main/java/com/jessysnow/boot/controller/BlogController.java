@@ -47,4 +47,9 @@ public class BlogController {
         blogService.pubANewBlog(blogWrapper.getTitle(), FlexMarkUtil.parseMarkDown(blogWrapper.getContent()), categoryId, httpServletRequest);
         return new Struct<>("发布成功");
     }
+
+    @GetMapping("search/{categoryValue}")
+    public List<BlogWrapper> searchBlogs(@PathVariable(name = "categoryValue") String categoryValue){
+        return blogService.getBlogByCategoryValue(categoryValue);
+    }
 }

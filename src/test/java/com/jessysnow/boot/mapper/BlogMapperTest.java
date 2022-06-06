@@ -28,4 +28,9 @@ public class BlogMapperTest {
     public void selectBlogWrapperByUserId() {
         System.out.println(blogMapper.selectBlogWrapperByUserId(1));
     }
+
+    @Test
+    public void selectBlogWrapperByCategoryName() {
+        System.out.println(blogMapper.selectBlogWrapperByCategoryName("科技"));
+    }
 }

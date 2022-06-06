@@ -39,5 +39,18 @@ public interface BlogService {
     Blog getBlogById(long id);
 
 
+    /**
+     * 发布一条新博客
+     * @param title 博客标题
+     * @param content 博客正文
+     * @param categoryId 博客 id
+     */
     void pubANewBlog(String title, String content, int categoryId, HttpServletRequest request);
+
+    /**
+     * 通过标签搜索博客
+     * @param category 分类标签的值
+     * @return BlogWrapper 对象集合
+     */
+    List<BlogWrapper> getBlogByCategoryValue(String category);
 }

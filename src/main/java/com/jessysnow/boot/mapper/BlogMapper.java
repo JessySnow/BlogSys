@@ -34,6 +34,14 @@ public interface BlogMapper {
     List<Blog> selectBlogByCategoryId(@Param("categoryIds") List<Integer> categoryId);
 
     /**
+     * 从数据库获取所有的 Blog 对象
+     * 筛选条件: 类别的名称
+     * @param categoryValue 类别的名称 value
+     * @return Blog 对象集合
+     */
+    List<BlogWrapper> selectBlogWrapperByCategoryName(@Param("categoryValue") String categoryValue);
+
+    /**
      * 从数据库获取某一条 Blog 对象
      * 筛选条件：博客 id
      * @param id 博客 id

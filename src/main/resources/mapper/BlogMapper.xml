@@ -75,4 +75,15 @@
         WHERE u.id = #{userId};
     </select>
 
+    <!-- List<BlogWrapper> selectBlogWrapperByCategoryName(@Param("categoryValue") String categoryValue);-->
+    <select id="selectBlogWrapperByCategoryName" resultType="BlogWrapper">
+        SELECT b.id, b.title, b.pub_date, b.user_id, b.count, b.banner, b.content, c.value
+        FROM blog b
+        LEFT JOIN category c
+        ON b.category_id = c.id
+        LEFT JOIN `user` u
+        ON b.user_id = u.id
+        WHERE c.value = #{categoryValue};
+    </select>
+
 </mapper>

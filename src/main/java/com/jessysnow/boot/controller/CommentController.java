@@ -4,6 +4,7 @@ import com.jessysnow.boot.controller.result.Code;
 import com.jessysnow.boot.controller.result.Struct;
 import com.jessysnow.boot.entity.Comment;
 import com.jessysnow.boot.entity.User;
+import com.jessysnow.boot.entity.vo.CommentWrapper;
 import com.jessysnow.boot.service.CommentService;
 import com.jessysnow.boot.utils.SessionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +26,8 @@ public class CommentController {
     }
 
     @GetMapping({"{blogId}"})
-    public Struct<List<Comment>> getSpecificComments(@PathVariable("blogId")long blogId){
-        return new Struct<>(Code.SUCCESS, commentService.getCommentByBlogId(blogId));
+    public Struct<List<CommentWrapper>> getSpecificComments(@PathVariable("blogId")long blogId){
+        return new Struct<>(Code.SUCCESS, commentService.getCommentWrapperById(blogId));
     }
 
     @PostMapping("")

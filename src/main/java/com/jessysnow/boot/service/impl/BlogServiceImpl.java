@@ -41,6 +41,11 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
+    public List<BlogWrapper> getBlogByCategoryValue(String category) {
+        return blogMapper.selectBlogWrapperByCategoryName(category);
+    }
+
+    @Override
     public List<BlogWrapper> getUserBlogs(long userId) {
         List<BlogWrapper> blogWrapperList = blogMapper.selectBlogWrapperByUserId(userId);
         for(BlogWrapper blogWrapper : blogWrapperList)
