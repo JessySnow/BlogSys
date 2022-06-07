@@ -99,7 +99,7 @@ public class UserController {
         }else{
             String avatarPath;
 
-            if(avatar == null)
+            if(avatar != null)
                 avatarPath = userService.updateAvatar(id, avatar, httpServletRequest);
             else
                 avatarPath = SessionUtil.getUserFromSession(httpServletRequest).getAvatar();
