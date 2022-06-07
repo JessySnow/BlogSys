@@ -79,5 +79,5 @@ public interface BlogMapper {
      * @param categoryId 分类的 id
      * @param userId 用户 id
      */
-    void insertANewBlog(@Param("title")String title,@Param("content")String content,@Param("categoryId")int categoryId, @Param("userId")long userId);
+    void insertANewBlog(@Param("title")String title,@Param("content")String content,@Param("categoryId")int categoryId, @Param("userId")long userId, @Param("banner")String banner);
 }

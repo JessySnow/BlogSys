@@ -1,5 +1,6 @@
 package com.jessysnow.boot.service;
 
+import com.jessysnow.boot.entity.Banner;
 import com.jessysnow.boot.entity.Blog;
 import com.jessysnow.boot.entity.vo.BlogWrapper;
 
@@ -45,7 +46,7 @@ public interface BlogService {
      * @param content 博客正文
      * @param categoryId 博客 id
      */
-    void pubANewBlog(String title, String content, int categoryId, HttpServletRequest request);
+    void pubANewBlog(String title, String content, int categoryId, HttpServletRequest request, String categoryValue);
 
     /**
      * 通过标签搜索博客
@@ -53,4 +54,11 @@ public interface BlogService {
      * @return BlogWrapper 对象集合
      */
     List<BlogWrapper> getBlogByCategoryValue(String category);
+
+    /**
+     * 随机选择一张图片作为 Blog 的 Banner
+     * @param categoryValue 图片的分类值
+     * @return Banner 对象集合
+     */
+    Banner chooseABanner(String categoryValue);
 }

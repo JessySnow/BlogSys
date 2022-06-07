@@ -58,9 +58,9 @@
 
     <!-- void insertANewBlog(@Param("title")String title,@Param("content")String content,@Param("categoryId")int categoryId, @Param("userId")long userId);-->
     <insert id="insertANewBlog">
-        INSERT INTO blog(title, content, pub_date, category_id, user_id)
+        INSERT INTO blog(title, content, pub_date, category_id, user_id, banner)
         VALUES
-        (#{title}, #{content}, NOW(), #{categoryId}, #{userId});
+        (#{title}, #{content}, NOW(), #{categoryId}, #{userId}, #{banner});
     </insert>
 
 

@@ -44,7 +44,7 @@ public class BlogController {
     @PostMapping("")
     public Struct<String> pubANewBlog(@RequestBody BlogWrapper blogWrapper, HttpServletRequest httpServletRequest){
         int categoryId = categoryService.addOrGetCategory(blogWrapper.getValue());
-        blogService.pubANewBlog(blogWrapper.getTitle(), FlexMarkUtil.parseMarkDown(blogWrapper.getContent()), categoryId, httpServletRequest);
+        blogService.pubANewBlog(blogWrapper.getTitle(), FlexMarkUtil.parseMarkDown(blogWrapper.getContent()), categoryId, httpServletRequest, blogWrapper.getValue());
         return new Struct<>("发布成功");
     }
 

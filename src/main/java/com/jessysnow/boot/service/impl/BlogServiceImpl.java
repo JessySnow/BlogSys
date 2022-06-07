@@ -1,5 +1,6 @@
 package com.jessysnow.boot.service.impl;
 
+import com.jessysnow.boot.entity.Banner;
 import com.jessysnow.boot.entity.Blog;
 import com.jessysnow.boot.entity.vo.BlogWrapper;
 import com.jessysnow.boot.mapper.BlogMapper;
@@ -59,8 +60,57 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    public void pubANewBlog(String title, String content, int categoryId, HttpServletRequest request) {
-        blogMapper.insertANewBlog(title, content, categoryId, SessionUtil.getUserFromSession(request).getId());
+    public void pubANewBlog(String title, String content, int categoryId, HttpServletRequest request, String categoryValue) {
+        String banner = chooseABanner(categoryValue).getPath();
+        blogMapper.insertANewBlog(title, content, categoryId, SessionUtil.getUserFromSession(request).getId(), banner);
+    }
+
+    @Override
+    public Banner chooseABanner(String categoryValue) {
+        Banner banner = null;
+
+        switch (categoryValue){
+            case ("科技"):
+                banner = Banner.TECH;
+                break;
+            case ("健康"):
+                banner = Banner.HEALTH;
+                break;
+            case ("情感"):
+                banner = Banner.AFFECTION;
+                break;
+            case ("动画"):
+                banner = Banner.ANI;
+                break;
+            case ("游戏"):
+                banner = Banner.GAME;
+                break;
+            case ("八卦"):
+                banner = Banner.RUMOR;
+                break;
+            case ("测试"):
+                banner = Banner.TEST;
+                break;
+            case ("食物"):
+                banner = Banner.FOOD;
+                break;
+            case ("旅行"):
+                banner = Banner.TRAVEL;
+                break;
+            case ("代码"):
+                banner = Banner.CODE;
+                break;
+            case ("生活"):
+                banner = Banner.LIFE;
+                break;
+            case ("学习"):
+                banner = Banner.STUDY;
+                break;
+            default:
+                banner = Banner.DEFAULT;
+        }
+
+        return banner;
     }
 
     /**
